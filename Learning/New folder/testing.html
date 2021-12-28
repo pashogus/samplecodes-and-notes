@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	  
+	
+<!-- 
+getJSON() is just a shorthand for the following:
+$.ajax({
+    dataType: "json",
+    url: url,
+    data: data,
+    success: success
+});
+-->
+<script>
+		$.ajax({
+		url:"https://stgwww.cos.agilent.com/ignite/services/buytabmapping",
+                contentType: "application/json;charset=UTF-8",
+		dataType: "jsonp",
+		timeout: 3000,
+	        callback: 'callback',
+		async: false,
+	success: function(result) {
+		console.log(result);			
+		},
+		error: function(e) {
+			console.log('Network Error ' + e);
+		}
+    });
+	  </script>	  
+	  
+	  
+	  <script>
+	  $.ajax({
+		type: "GET",
+		url:"/ignite/services/buytabmapping",
+		contentType: "application/json;charset=UTF-8",
+		dataType: "json",
+		jsonpCallback: 'callbackfn',
+		timeout: 30000,
+		async: false,
+		success: function(result) {
+			if(typeof buyPartsLabelData != "undefined"){
+				buyPartsLabelData= $.extend(buyPartsLabelData, result);
+			}else{
+				buyPartsLabelData = result;
+			}
+			//buyPartsLabelData = result;			
+		},
+		error: function(e) {
+			console.log('Network Error ' + e);
+		}
+    });
+	  </script>
+</HEAD>
+<BODY>
+
+
+
+<!--
+
+
+	
+userId	1
+id	1
+title	"delectus aut autem"
+completed	false
+
+"title" : "Test"
+"Name"  :  "NameTest"
+
+ -->
+ <div id = "productsJson"> </div>
+  <div id = "datagridJson"> </div>
+  <div id = "testJson"> </div>
+  <p>
+  </p>
+</BODY>
+</HTML>

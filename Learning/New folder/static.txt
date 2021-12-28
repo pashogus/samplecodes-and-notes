@@ -1,0 +1,69 @@
+class ClassA {                                                     
+    // Static variable
+    static int x = 10;
+    int y = 20;
+ 
+    // Static variable with privare access modifier in ClassA
+    private static int z = 30;
+    protected static int a = 30;
+ 
+    // Class 2 - Nested static class  Helper Class 2
+    static class ClassB {
+ 
+ protected static int aa = 30;
+        // Method of nested static class
+        void get()
+        {
+            // Execution statements whenever function is called
+ 
+            // Print and display commands
+            System.out.println("x: " + x); 
+            System.out.println("z: " + z); //able to access private varaible within class , but it needs to static for htis case , 
+             //as we are accessing from static class
+           // System.out.println("y: " + y); y is not static variable , so cant able to access non static variable from static class
+             System.out.println("a: " + a); //able to access protected varaible within class , but it needs to static for htis case , 
+             //as we are accessing from static class
+        }
+    }
+}
+ 
+// Class 3 // Main Class
+public class GFG {
+ 
+    // Main driver method
+    public static void main(String[] args)
+    {
+        // Creating an object of static nested class
+        // defined outside Main class
+        ClassA.ClassB ob1 = new ClassA.ClassB();
+        ClassA ob2 = new ClassA();
+        
+        System.out.println("value of Y from main methood : " + ob2.y);  
+        System.out.println("value of aa from main methood : " + ob2.aa);
+        /*
+        /GFG.java:42: error: cannot find symbol
+        System.out.println("value of aa from main methood : " + ob2.aa);
+                                                                   ^
+  symbol:   variable aa
+  location: variable ob2 of type ClassA
+1 error
+
+        */
+        
+        /*
+           System.out.println("value of z from main methood : " + ob2.z);
+           /GFG.java:38: error: z has private access in ClassA
+           System.out.println("value of z from main methood : " + ob2.z);
+                                                                     ^
+1 error
+      */
+      System.out.println("value of x from main methood : " + ob2.x);
+      System.out.println("value of x from main methood in satic way: " +ClassA.x);
+ 
+        // Calling the method od static nested class
+        // in main() method
+        ob1.get();
+        
+    }
+}
+

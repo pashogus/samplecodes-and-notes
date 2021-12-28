@@ -1,0 +1,28 @@
+[oraadm-uat@exswcsa1 ReportUtility]$ var="Trhis Old MAn cae rolling";echo $var
+Trhis Old MAn cae rolling
+[oraadm-uat@exswcsa1 ReportUtility]$ var="Trhis Old MAn cae rolling";echo ${var}
+Trhis Old MAn cae rolling
+[oraadm-uat@exswcsa1 ReportUtility]$ var="Trhis Old MAn cae rolling";echo "${var}"
+Trhis Old MAn cae rolling
+[oraadm-uat@exswcsa1 ReportUtility]$ var="Trhis Old MAn cae rolling";echo '${var}'
+${var}
+[oraadm-uat@exswcsa1 ReportUtility]$ var="Trhis Old MAn cae rolling";echo "${var//man/rolling}"
+Trhis Old MAn cae rolling
+[oraadm-uat@exswcsa1 ReportUtility]$ var="Trhis Old MAn cae rolling";echo "${var//man/rolling/test}"
+Trhis Old MAn cae rolling
+[oraadm-uat@exswcsa1 ReportUtility]$ var="Trhis Old MAn cae rolling";echo "${var/man/rolling/test}"
+Trhis Old MAn cae rolling
+[oraadm-uat@exswcsa1 ReportUtility]$ var="/Trhis/Old/MAn/cae/rolling";echo "${var#*/mAn/rolling/test}"
+/Trhis/Old/MAn/cae/rolling
+[oraadm-uat@exswcsa1 ReportUtility]$ var="Trhis Old MAn cae rolling";echo "${var/mAn/rolling/test}"
+Trhis Old MAn cae rolling
+[oraadm-uat@exswcsa1 ReportUtility]$ var="/Trhis/Old/MAn/cae/rolling";echo "${var#*/mAn/}"
+/Trhis/Old/MAn/cae/rolling
+[oraadm-uat@exswcsa1 ReportUtility]$ echo "The date is : date!"
+-bash: !": event not found
+[oraadm-uat@exswcsa1 ReportUtility]$ echo "The date is : ${date}!"
+-bash: !": event not found
+[oraadm-uat@exswcsa1 ReportUtility]$ echo "The date is : $(date)!"
+-bash: !": event not found
+[oraadm-uat@exswcsa1 ReportUtility]$ echo "The date is : (date)!"
+-bash: !": event not found

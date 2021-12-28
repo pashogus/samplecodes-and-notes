@@ -1,0 +1,68 @@
+#result1
+{
+ border : 2px solid black;
+ min-width:4vh;
+}
+
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+thead th, tbody td {
+border: 1px solid gray;
+width: 50%;
+}
+table {
+width: 80vw;
+}
+th {
+	text-align: center;
+}
+td {
+	text-align: left;
+}
+
+th:hover
+{
+	background-color:grey;
+}
+
+td:hover {
+    background-color: grey;
+}
+
+Inline #2
+#contact {
+border: 1px dashed black;
+}
+
+/* Child Combinator*/
+#contact > p {
+text-emphasis: ;
+display: block;
+padding: 10px;
+color: red;
+}
+
+
+/* Specificity  # selctor has more specificity then attribute selector but if there is inline style then it is given more specificity*/
+#spantext {
+color: blue;
+}
+
+span {
+color: green;
+}
+
+
+
+/* Specificity */
+
+
+tr span{
+	display:inline-block;
+	padding:2px;
+	/* border will not have effect for inline-block display */
+	/* border:5px; */
+	margin-bottom: 5px;
+}

@@ -1,0 +1,55 @@
+WCC  -> WCS MGMT -> WCS DEL
+WCC - Content Management
+WCS - Site Management
+
+WCC - Elibrary Public, Elibrary Gated, Publishing Images
+WCS - Library Content_C, Digital Content_C
+
+Elibrary Public, Elibrary Gated ----> Library Content_C
+Publishing Images -----> Digital Content_C
+
+Content in WCC -> WCS MGMT  : Conditions 1.Publish To Web  - True
+										 2.Sink To Site  - True
+										 3.Security Grp - Elibrary Public  or Elibrary Gated
+ Publish To Web, Sync To Site  - based on publish & Unpublish Date
+ 
+ When Create content without giving publish date  -  publish Date : assign to current Date , Publish To Web & Site To Site - False. in next publish-unpublish schedule job , flags will change to True
+ 
+ If Create content with publish date, on the time of Publish Date Publish To Web & Site To Site - True.
+ 
+ WCC To WCS -> 20 content at a time, WCS Integration component helps,Using Token.
+ 
+ Token Generate - When content Created or updated or Deleted, but for every content only one token created.
+ 
+Publish Date Conditions - Last 1 hr
+						if unpublsih date is present , Unpublish Date > Publish Date / unpublish date is null                                               
+						- Content Status : Released
+
+Unpublish Date Conditions - 1.Publish To Web  - True
+							2.Sink To Site  - True
+                                                        content status - Released
+                                                        unpublish date less than current date
+							
+			
+Publish Date ----------------- Unpublish Date
+			(Gap atleast 1 hr)
+			
+Content Status:
+--------------
+
+Content Created  -----------> Then Approver approves it ----------> Search Engine Store all Index -------------> Status  : Released
+               (Status :Review)                       (Status : Done)
+				 
+Images Created  -----------> Rendition Happening in IBR -----------> Search Engine Store all Index -------------> Status  : Released
+               (Status :GENWWW)                        (Status :Done)
+				 
+GENWWW means - Images processed from WCC To IBR (InBound Repository)
+
+Search Engine Store all Index - Once Content Status is : Done, In that time a search Engine in WCC will store all the indexes for future search purpose
+
+WCS MGMT -> WCS DEL : Auto Approval Listener approves content to publish Queue & every 20 mins once, it publish everything in the Queue
+
+Approval :
+---------
+1. Primary Approval
+2. Back Approval

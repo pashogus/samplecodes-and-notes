@@ -1,0 +1,24 @@
+In Continuous Integration after a code commit, the software is built and tested immediately. In a large project with many developers, commits are made many times during a day. With each commit code is built and tested. If the test is passed, build is tested for deployment. If the deployment is a success, the code is pushed to Production. This commit, build, test, and deploy is a continuous process, and hence the name continuous integration/deployment.
+
+Continuous integration is a software development method where members of the team can integrate their work at least once a day
+Development without CI creates lots of bugs whereas Development with CI offers Fewer bugs
+Important activities of Continous Integration are 1) DB integration, 2) Code Inspection, 3) Automated Deployment, Document generation, and Compilation.
+The build should happen continuously using a dedicated Cl server, not a cron job.
+Important elements of CI are 1) Version Control System 2) Virtual Machine 3) Host CI Tool solutions 4) Tools
+Continuous Integration allows you to maintain just a single source repository
+CI process helps you to build better quality software
+The most important best practices of Continuous Integration process is to Commit Early and Commit Often never Commit Broken Code
+The major drawback of the CI process is that well-developed test-suite required many resources for Cl server
+Jenkins, Bambook, and Team City are some useful Continuous Integration tools.
+ 
+ 
+ https://stackoverflow.com/questions/49357597/how-to-run-a-jar-file-generated-by-maven-in-jenkins-job-builder
+ 
+ https://www.jdev.it/deploying-your-war-file-from-jenkins-to-tomcat/
+ https://caylent.com/jenkins-plugins
+ 
+ https://www.edureka.co/community/49753/auto-build-job-jenkins-there-change-code-github-repository
+ 
+ http://www.andyfrench.info/2015/03/automatically-triggering-jenkins-build.html
+ 
+ https://jenkins-le-guide-complet.github.io/html/sect-first-steps-first-job.html

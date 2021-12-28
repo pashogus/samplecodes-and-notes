@@ -1,0 +1,334 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+<link href="./testing.css" type="text/css" rel="stylesheet">
+
+<!--
+
+<script>
+console.log("Hello");
+var request = new XMLHttpRequest();
+request.open('GET','http://datagrid.cos.agilent.com/ignite?cmd=get&cacheName=WebProductsCache&user=wcs_rest_ro&password=b4O2rumoStL97thE8ruv&key=PRDT_914275_en_GLOBAL');
+request.onload = function()
+{
+console.log(request.responseText);
+};
+request.send();
+
+</script>
+-->
+
+<!--
+<script>
+         $(document).ready(function(){
+            $.getJSON("https://jsonplaceholder.typicode.com/todos/1", function(result){
+                  $("#productsJson").html('<p> userId :' + result.userId + '</p>');
+				  $("#productsJson").append('<p> Id : '+ result.id+ '</p>');
+				  $("#productsJson").append('<p> Title : ' + result.title + '</p>');
+				   $("#productsJson").append('<p> Completed Status : ' + result.completed + '</p>');
+               }); 
+           
+         });
+      </script>
+	  
+	  <script>
+         $(document).ready(function(){
+            $.getJSON("http://ergast.com/api/f1/2004/1/results.json", function(result){
+               // console.log(result.MRData.RaceTable.Races[0].Results[0]);
+               }); 
+           
+         });
+      </script>
+	  
+	-->  
+	  
+	  
+	 
+	  
+<!--	
+	<script>
+         $(document).ready(function(){
+            $.getJSON("http://datagrid.cos.agilent.com/ignite?cmd=get&cacheName=WebProductsCache&user=wcs_rest_ro&password=b4O2rumoStL97thE8ruv&key=PRDT_914275_en_GLOBAL", function(result){
+                  $("#datagridJson").html('<p> userId :' + result + '</p>');
+
+               }); 
+           
+         });
+      </script>
+	  
+	  
+	  <script>
+	       $(document).ready(function(){
+		   console.log("inside function");
+		   $.getJSON("test.json", function(result)
+		   {
+		      $("#testJson").html('<p> Title '+ result.title +'</p>');
+			  $("#testJson").append('<p> Name '+ result.Name +'</p>');
+		   });
+		   });
+		   
+	  </script>
+
+	
+	  <script>
+	  $.ajax('http://datagrid.cos.agilent.com/ignite?cmd=get&cacheName=WebProductsCache&user=wcs_rest_ro&password=b4O2rumoStL97thE8ruv&key=PRDT_914275_en_GLOBAL', 
+{
+    dataType: 'json', // type of response data
+    timeout: 500,     // timeout milliseconds
+    success: function (data,status,xhr) {   // success callback function
+        $('p').append(data.userId + ' ' + data.id + ' ' + data.title);
+    },
+    error: function (jqXhr, textStatus, errorMessage) { // error callback 
+        $('p').append('Error: ' + errorMessage);
+    }
+});
+	  </script>
+-->
+
+	
+<!-- 
+getJSON() is just a shorthand for the following:
+$.ajax({
+    dataType: "json",
+    url: url,
+    data: data,
+    success: success
+});
+-->
+
+	  
+</HEAD>
+<BODY>
+
+
+
+<!--
+
+
+	
+userId	1
+id	1
+title	"delectus aut autem"
+completed	false
+
+"title" : "Test"
+"Name"  :  "NameTest"
+
+ -->
+ <div id = "productsJson"> </div>
+  <div id = "datagridJson"> </div>
+  <div id = "testJson"> </div>
+ <button id="races">json</button>
+
+ 
+
+<button id="fetchdata">Get Details</button>
+<section>
+<div id="result"></div>
+<div id="result1" ></div>
+
+<div id="contact">
+<p id="dob">
+</p>
+<div>
+<p id="URL">
+</p>
+</div>
+</div>
+<section>
+<hr>
+
+<section>
+<article>
+<div>
+<span id="spantext" style="color:grey">texting</span>
+</div>
+</article>
+<section>
+
+
+<section>
+<form>
+
+</form>
+</section>
+<!-- it should be added at the bottom of the page, then only it could able to find the elements-->
+<script>
+//    1
+//  2    3
+//4   5
+//(a) Inorder (Left, Root, Right) : 4 2 5 1 3   -- > similar to clockwiese from base left node
+//(b) Preorder (Root, Left, Right) : 1 2 4 5 3   -- >  exact copy of tree
+//c) Postorder (Left, Right, Root) : 4 5 2 3 1   -- >  similar to anti clockwise from base left 
+
+/*
+Depth First Traversals: 
+(a) Inorder (Left, Root, Right) : 4 2 5 1 3 
+(b) Preorder (Root, Left, Right) : 1 2 4 5 3 
+(c) Postorder (Left, Right, Root) : 4 5 2 3 1
+Breadth First or Level Order Traversal : 1 2 3 4 5 
+
+*/
+	const fetchDataBtn = document.querySelector("#fetchdata");
+	console.log(fetchDataBtn);
+	const result = document.querySelector("#result");
+console.log(result);
+
+// gets data from API and sets the content of #result div
+const getData = function () {
+ result.innerText = "Loading....";
+ //meter - only for scalar mesurments , for progress use <progress> tag , always accociate it with label
+ 
+ /*
+ 
+ <label for="disk_c">Disk usage C:</label>
+<meter id="disk_c" value="2" min="0" max="10">2 out of 10</meter><br>
+ The meter tag is not supported in Edge 12 (or earlier).
+ 
+  <label for="file">Downloading progress:</label>
+<progress id="file" value="32" max="100"> 32% </progress> 
+ */
+ //result.innerHTML="<meter min=0 max=10 value=0></meter>"
+  fetch("http://ergast.com/api/f1/2004/1/results.json")
+    .then((res) => res.json())
+    .then((data) => {
+	
+	const raceObject1 = JSON.stringify(data.MRData.RaceTable.Races[0].Results[0]);
+	const raceObject = data.MRData.RaceTable.Races[0].Results[0];
+	
+		 
+	var tableContent = "<table> <thead> <tr> <th> Driver name  </th> <th>Nationality</th>  </tr> </thead> ";
+	 tableContent += "<tbody> <tr>  <td> "+ raceObject.Driver.driverId+"</td> <td>"+ raceObject.Driver.nationality+"</td> </tr> ";
+	 tableContent += " <tr>  <td colspan=2>  <span> Name: "+ raceObject.Driver.givenName+" </span> <span> Family Name: "+ raceObject.Driver.familyName +"</span></td></tbody>";
+	 	
+	 tableContent+="</table>"
+	  //result.innerHTML="<meter min=0 max=10 value=9></meter>"	 
+	 $("#result1").html(tableContent);
+	result.innerHTML = raceObject1;
+	 $("#dob").html(raceObject.Driver.dateOfBirth);
+	 	 $("#URL").html(raceObject.Driver.url);
+		 
+		 window.localStorage.setItem('ID',raceObject.Driver.driverId);
+    })
+    .catch((error) => console.log(error));
+};
+
+// add event listener for #fetchdata button
+fetchDataBtn.addEventListener("click", getData);
+	  </script>
+	  
+	  
+	  <script>
+	  const foo=[1,2,3,4,5,6];
+	 
+	  /*
+	  Array(101) [ 1, 2, 3,4,5,6 <4 empty slots>, … ]
+[0…99]
+0: 1
+1: 2
+2: 3
+[100…100]
+100: 100
+length: 101
+<prototype>: Array []
+	  */
+	   //adding element at 100th position , array index starts at 0 , now the length of array is 100 , all other three elements will be occupied with empty slots
+	  foo[100]=100;
+	  
+	  //destruction assignment
+	  const [n,m]=foo;
+	  
+	
+	  console.log(n);
+	    console.log(m);
+		console.log("length after adding data in 100th index "+foo.length);
+		console.log("Before splicing"+foo);
+		
+		  //splicing , at position 0 remove two items , so it will remove data from index 0 and 1
+	  foo.splice(0,2);
+	  /*
+	  foo.splice(1,2); at position 1 remove two items , so it will remove data from index 1 and 2
+	  */
+	  console.log("After splicing "+foo);
+	  
+	  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+// At position 2,  remove 1: and  add 2 elements,
+fruits.splice(2, 1, "Lemon", "Kiwi");
+
+    const a=1;
+ 
+   const myfunction = () => {
+   const a =2;
+   return () => {
+   console.log("a is "+a);
+   console.log(2+3);
+   }
+   };
+   
+  
+   const test=myfunction(); //this function call is returning another function
+   console.log("value retruned by myfunction is "+test);
+   test();
+   console.log("value retruned by myfunction is "+test);
+
+
+
+console.log("one" + 3 ==='3');
+console.log("two" + 3 == '3');
+console.log("three" + 3 != '3');
+console.log("four" +  [3] == [3]);
+
+/*********************/
+
+function printA()
+{
+console.log("Print A function "+answer);
+var answer=1;
+}
+//for every time , we will get undefined, as the var is defined in block scope, 
+printA();
+printA();
+/*********************/
+
+console.log("potato".includes("pot"));
+
+/*********************/
+
+const obj1 = {"a":1 , b:2 , c:3 , "test":"fsdafsdasfsa"}
+/*
+
+onject1 
+Object { a: 1, b: 2, c: 3, test: "fsdafsdasfsa" }
+​a: 1
+​b: 2
+​c: 3
+​test: "fsdafsdasfsa"
+​<prototype>: Object { … }
+*/
+console.log("onject1",obj1);
+const obj2 = {"a":10 , d:20 }
+console.log({d:4,...obj1,...obj2,c:30});
+//"a":1 , b:2 , c:3 , "test":"fsdafsdasfsa",d:4,"a":10 , d:20
+// output - Object { a: 10, b: 2, c: 30, test: "fsdafsdasfsa", d: 20 }
+//output - Object { d: 20, a: 10, b: 2, c: 30, test: "fsdafsdasfsa" }
+
+/*********************/
+
+let b=5;
+console.log("post increment " + b++); //5
+console.log("post increment " + ++b); //7
+/*********************/
+//Array.of(1, 2, 3);   // [1, 2, 3] - valid syntax 
+let vowels = Array.of("aeiou"); - ['aeiou']
+//let vowel = "aeiou".toArray(); //  not a function
+console.log("vowels" + vowels);
+console.log("vowel" + vowel);
+
+	  </script>
+  <p>
+  </p>
+</BODY>
+</HTML>

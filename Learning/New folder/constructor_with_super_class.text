@@ -1,0 +1,74 @@
+
+class Animal
+{
+     Animal()
+    {
+        System.out.println("This is Animal");
+    }
+    
+     static
+ {
+     System.out.println("Animal Static block");
+ }
+ 
+}
+
+class Bird extends Animal
+{
+static  int count ;
+//static final int count ; not possible as refernce 
+String name;
+String type;
+ 
+ static
+ {
+     System.out.println("Bird Static block");
+ }
+ 
+ Bird()
+ {
+    System.out.println("This is Bird");
+ }
+ 
+ Bird(String name,String type)
+ {
+     this.name=name;
+     this.type=type;
+     count++;
+ }
+
+}
+
+
+public class MyClass {
+    public static void main(String args[]) {
+        Bird bird = new Bird("he","sdaf");
+        System.out.println("-------------");
+                Bird bird2 = new Bird("he","sdaf");
+                 System.out.println("-------------");
+                        Bird bird3 = new Bird("he","sdaf");
+                            System.out.println("-------------");
+                        Bird bird4 = new Bird();
+                           System.out.println("-------------");
+                        Animal bird5 = new Bird();
+                           System.out.println("-------------");
+  System.out.println(Bird.count);
+    }
+}
+
+
+Animal Static block
+Bird Static block
+This is Animal
+-------------
+This is Animal
+-------------
+This is Animal
+-------------
+This is Animal
+This is Bird
+-------------
+This is Animal
+This is Bird
+-------------
+3

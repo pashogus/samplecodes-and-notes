@@ -1,0 +1,24 @@
+After importing projrct .. need to run the below command to deleted the temp files created 
+https://stackoverflow.com/questions/5074063/maven-error-failure-to-transfer
+cd %userprofile%\.m2\repository
+for /r %i in (*.lastUpdated) do del %i
+
+and then run Maven-update 
+
+
+Environment variable
+ 1. Need to set JAVA_HOME
+ 2. Need to set MAVEN_HOME and then add path with 'bin' in path variable
+ 
+
+Command to install jar files to Maven Local Repository
+ mvn install:install-file -Dfile="C:\Users\540091\OneDrive - Cognizant\540091_MyDriveData\Jar Files\oracle.ucm.ridc-11.1.1.jar" -DgroupId=com.oracle 	-DartifactId=ucm.ridc -Dversion=11.1.1.0 -Dpackaging=jar
+
+
+mvn install:install-file -Dfile="C:\Users\540091\OneDrive - Cognizant\540091_MyDriveData\Jar Files\ojdbc6.jar" -DgroupId=com.oracle 	-DartifactId=jdbc -Dversion=6.0 -Dpackaging=jar 
+
+Change to the project root folder (where pom.xml is located) and run:
+mvn dependency:copy-dependencies
+All jar-files are downloaded to /target/dependency.
+To set another output directory:
+

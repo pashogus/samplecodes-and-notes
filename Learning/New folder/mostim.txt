@@ -1,0 +1,75 @@
+Command is: nohup /usr/local/Utils/Open-JDK1.8/java/bin/java -Xmx4g -Xms4g -Djava.ext.dirs=/u01/etl/lib com.agilent.pim.PIMSystemETLApplication /u01/etl/agilent.pim.etl > /u01/etl/etl.log 2>&1 &
+Program have been started successfully!
+
+
+It is desirable to have multiple configurations for any application – where each configuration is specific to a particular runtime environment. In spring boot, you can achieve this by creating multiple application-{profile}.properties files in same location as application.properties file.
+
+Profile specific properties always override the non-profile specific ones. If several profiles are specified, a last wins strategy applies.
+
+## endeca out service output ##
+log4j.logger.endeca=${logLevel},endeca
+log4j.appender.endeca=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.endeca.File=${logdir}/pim-endeca.log
+log4j.appender.endeca.layout=org.apache.log4j.PatternLayout
+log4j.appender.endeca.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c{1}:%L - %m%n
+log4j.additivity.endeca=true
+
+## datagrid persistence service ##
+log4j.logger.datagrid=${logLevel},datagrid
+log4j.appender.datagrid=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.datagrid.File=${logdir}/pim-datagrid.log
+log4j.appender.datagrid.layout=org.apache.log4j.PatternLayout
+log4j.appender.datagrid.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c{1}:%L - %m%n
+log4j.additivity.datagrid=true
+
+## countryEntitlement computation service ##
+log4j.logger.countryEntitlement=${logLevel},countryEntitlement
+log4j.appender.countryEntitlement=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.countryEntitlement.File=${logdir}/pim-countryEntitlement.log
+log4j.appender.countryEntitlement.layout=org.apache.log4j.PatternLayout
+log4j.appender.countryEntitlement.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c{1}:%L - %m%n
+log4j.additivity.countryEntitlement=false
+
+## jdbc  service ##
+log4j.category.org.springframework.jdbc.core.JdbcTemplate=DEBUG,jdbc
+log4j.category.org.springframework.jdbc.core.StatementCreatorUtils=TRACE,jdbc
+log4j.category.org.springframework.jdbc.core=DEBUG,jdbc
+log4j.category.org.springframework.security=DEBUG,jdbc
+log4j.appender.jdbc=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.jdbc.File=${logdir}/pim-jdbc.log
+log4j.appender.jdbc.layout=org.apache.log4j.PatternLayout
+log4j.appender.jdbc.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c{1}:%L - %m%n
+log4j.additivity.jdbc=false
+
+# jdbc 1 log #
+logging.level.org.springframework.jdbc.core=TRACE,jdbc1
+log4j.appender.jdbc1=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.jdbc1.File=${logdir}/pim-jdbc1.log
+log4j.appender.jdbc1.layout=org.apache.log4j.PatternLayout
+log4j.appender.jdbc1.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c{1}:%L - %m%n
+log4j.additivity.jdbc1=false
+https://stackoverflow.com/questions/1932208/seeing-the-underlying-sql-in-the-spring-jdbctemplate
+
+https://www.mchange.com/projects/c3p0/
+
+{path : '' , component : HelloMessageComponent},
+emove @ComponentScan("org.demo") and @EnableAutoConfiguration annotation, because @SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
+
+i think i found your problem: your rest controller is not discovered by spring-boots component scan. according to this doc docs.spring.io/spring-boot/docs/current/reference/html/… spring scans the packages below the package where the class with the @SpringBootApplication annotation resides. your controller is located in a parallel package.
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.structuring-your-code
+
+@GetMapping
+
+@GetMapping annotation maps HTTP GET requests onto specific handler methods. It is a composed annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.GET)
+
+@RestController // shorthand for @Controller and @ResponseBody rolled together
+
+
+https://codezup.com/display-table-angular-json-server-rest-api/
+https://github.com/cornflourblue/angular-9-basic-authentication-example/blob/master/src/app/app.module.ts
+https://jasonwatmore.com/post/2020/04/29/angular-9-basic-http-authentication-tutorial-example
+https://www.javaguides.net/2020/09/angular-9-spring-boot-basic-auth-login-logout.html?fbclid=IwAR1dyWudRWsEVPUQcWwnlynmIn34-MU0tIggouNnUmGU-ecqdtGx442z8lc
+https://medium.com/@zerox/keep-that-damn-footer-at-the-bottom-c7a921cb9551
+
+https://www.tutorialspoint.com/angular8/angular8_authentication_and_authorization.htm
